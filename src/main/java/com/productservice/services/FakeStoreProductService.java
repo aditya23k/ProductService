@@ -3,11 +3,11 @@ package com.productservice.services;
 
 import com.productservice.DTO.FakeStoreProductDTO;
 import com.productservice.DTO.GenericProductDTO;
-import com.productservice.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -20,6 +20,10 @@ public class FakeStoreProductService implements ProductService{
     private String getProductRequestUrl= "https://fakestoreapi.com/products/{id}";
 
     private String createProductRequestUrl ="https://fakestoreapi.com/products";
+
+    private String deleteProductRequestUrl= "https://fakestoreapi.com/products/{id}";
+
+    private String getAllProductsUrl="https://fakestoreapi.com/products";
 
     public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder){
         this.restTemplateBuilder=restTemplateBuilder;
@@ -65,6 +69,23 @@ public class FakeStoreProductService implements ProductService{
 
     @Override
     public List<GenericProductDTO> getAllProducts() {
+        RestTemplate restTemplate= restTemplateBuilder.build();
+        ResponseEntity<List<GenericProductDTO>> listResponseEntity=
+                restTemplate.exchange(getAllProductsUrl,
+                        HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<List<GenericProductDTO>>() {});
+        List<GenericProductDTO> allProductList=listResponseEntity.getBody();
+
+        return allProductList;
+    }
+
+    @Override
+    public GenericProductDTO deleteProductbyId(Long id) {
+
+        GenericProductDTO deleteProduct;
+
+
         return null;
     }
 
