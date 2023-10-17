@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service("fakeStoreProductService")
@@ -70,14 +72,23 @@ public class FakeStoreProductService implements ProductService{
     @Override
     public List<GenericProductDTO> getAllProducts() {
         RestTemplate restTemplate= restTemplateBuilder.build();
-        ResponseEntity<List<GenericProductDTO>> listResponseEntity=
-                restTemplate.exchange(getAllProductsUrl,
-                        HttpMethod.GET,
-                        null,
-                        new ParameterizedTypeReference<List<GenericProductDTO>>() {});
-        List<GenericProductDTO> allProductList=listResponseEntity.getBody();
+        ResponseEntity<GenericProductDTO[]> listResponseEntity=
+                restTemplate.getForEntity(getAllProductsUrl,GenericProductDTO[].class);
 
-        return allProductList;
+        List<GenericProductDTO> listAllProducts= new ArrayList<>();
+
+        for(GenericProductDTO genericProductDTO: Arrays.stream(listResponseEntity.getBody()).toList()){
+            GenericProductDTO product= new GenericProductDTO();
+            product.setPrice(genericProductDTO.getPrice());
+            product.setTitle(genericProductDTO.getTitle());
+            product.setImage(genericProductDTO.getImage());
+            product.setId(genericProductDTO.getId());
+            product.setCategory(genericProductDTO.getCategory());
+            product.setDescription(genericProductDTO.getDescription());
+
+            listAllProducts.add(product);
+        }
+        return listAllProducts;
     }
 
     @Override
