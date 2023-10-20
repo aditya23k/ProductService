@@ -94,10 +94,14 @@ public class FakeStoreProductService implements ProductService{
     @Override
     public GenericProductDTO deleteProductbyId(Long id) {
 
-        GenericProductDTO deleteProduct;
+        GenericProductDTO deleteProduct=getProductbyId(id);
+        deleteProduct.setDescription(null);
+        deleteProduct.setCategory(null);
+        deleteProduct.setPrice(null);
+        deleteProduct.setTitle(null);
+        deleteProduct.setImage(null);
 
-
-        return null;
+        return deleteProduct;
     }
 
 
