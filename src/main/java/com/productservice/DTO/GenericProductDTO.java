@@ -15,7 +15,7 @@ public class GenericProductDTO {
 
     private String description;
 
-    private double price;
+    private Double price;
 
     private String category;
 
