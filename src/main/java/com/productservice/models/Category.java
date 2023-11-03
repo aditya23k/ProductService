@@ -1,10 +1,26 @@
 package com.productservice.models;
 
-public class Category extends  BaseModel {
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
+import java.util.Set;
+
+@Getter
+@Setter
+@Entity
+public class Category extends  BaseModel {
 
     private String name;
 
-    private String img;
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
+
+
+
 
 }
