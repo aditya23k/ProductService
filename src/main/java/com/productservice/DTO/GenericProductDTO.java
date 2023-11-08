@@ -1,15 +1,17 @@
 package com.productservice.DTO;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 
+
 public class GenericProductDTO {
 
-    private Long id;
+    private Long  id;
 
     private String title;
 

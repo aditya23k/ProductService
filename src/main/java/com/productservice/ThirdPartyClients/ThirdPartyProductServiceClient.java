@@ -5,7 +5,7 @@ import com.productservice.exceptions.NotFoundException;
 
 import java.util.List;
 
-public interface ThirdPartyProductService {
+public interface ThirdPartyProductServiceClient {
 
     GenericProductDTO getProductbyId(Long id) throws NotFoundException;
 
@@ -13,7 +13,7 @@ public interface ThirdPartyProductService {
 
     List<GenericProductDTO> getAllProducts();
 
-    GenericProductDTO updateProductbyId(Long id);
+    GenericProductDTO updateProductbyId(Long id, GenericProductDTO updateProduct) throws NotFoundException;
 
     GenericProductDTO deleteProductbyId(Long id);
 

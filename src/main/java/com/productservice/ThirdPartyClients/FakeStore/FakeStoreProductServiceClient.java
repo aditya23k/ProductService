@@ -40,7 +40,7 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
 
     public GenericProductDTO convertFakeStoreProductToGenericProduct(FakeStoreProductDTO fakeStoreProductDTO){
 
-        GenericProductDTO product= new GenericProductDTO();
+        GenericProductDTO product = new GenericProductDTO();
 
         product.setCategory(fakeStoreProductDTO.getCategory());
         product.setDescription(fakeStoreProductDTO.getDescription());

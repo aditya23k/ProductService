@@ -1,12 +1,14 @@
 package com.productservice.DTO;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
 
+@Builder
 public class FakeStoreProductDTO {
 
     private Long id;
